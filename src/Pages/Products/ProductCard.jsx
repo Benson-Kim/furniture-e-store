@@ -1,21 +1,37 @@
-import React from "react";
-import { BsCartPlus } from "react-icons/bs";
+import React, { useState } from "react";
+import { BsCartPlus, BsEye, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+	const [isHovered, setHovered] = useState(false);
 	return (
-		<Link
-			to={`/product/${product.id}`}
-			className='w-full p-3 sm:w-1/2 xl:w-1/4 3xl:w-1/5 5xl:w-1/6'
+		<div
+			onMouseEnter={() => {
+				setHovered(true);
+			}}
+			onMouseLeave={() => setHovered(false)}
+			className='rounded-md border bg-white p-3 hover:border-collapse hover:shadow hover:shadow-gray-400 md:relative'
 		>
-			<div className='cursor-pointer rounded-md border-t bg-white p-4 hover:shadow hover:shadow-gray-600'>
+			{isHovered && (
+				<div className=' md:absolute right-2 top-2'>
+					<div className='flex gap-x-3'>
+						<button className='bg-orange-500 hidden md:inline-block p-1 rounded-l-lg rounded-t-lg text-white font-light hover:bg-orange-700'>
+							<BsEye className='h-5 w-5' />
+						</button>
+						<button className='bg-rose-500 p-1 rounded-r-lg rounded-t-lg text-white font-light hover:bg-rose-700'>
+							<BsHeart className='h-5 w-5' />
+						</button>
+					</div>
+				</div>
+			)}
+			<Link to={`/product/${product.id}`} className=''>
 				<div className='mb-2 flex items-center justify-between'>
 					<span className='rounded-tr-lg rounded-bl-lg bg-green-500 px-1.5 text-center text-sm capitalize text-white'>
 						{product?.brand}
 					</span>
-					<span className='inline-flex rounded-r-lg rounded-t-lg bg-rose-500 px-1.5 text-center text-sm capitalize text-white sm:hidden'>
-						-{product.discountPercentage}%
-					</span>
+					<button className='bg-rose-500 p-1 rounded-r-lg rounded-t-lg font-light hover:bg-rose-700  text-white'>
+						<BsHeart className='h-5 w-5' />
+					</button>
 				</div>
 				<div className='flex flex-col'>
 					<div className='flex-shrink items-center justify-center'>
@@ -51,13 +67,13 @@ const ProductCard = ({ product }) => {
 							</span>
 						</article>
 					</div>
-					<button className='flex w-full items-center justify-center rounded-md bg-green-500 py-2 font-medium uppercase text-white shadow hover:bg-rose-500'>
-						<BsCartPlus className='mr-2 h-5 w-5' />
-						Add to Cart
-					</button>
 				</div>
-			</div>
-		</Link>
+			</Link>
+			<button className='flex w-full items-center justify-center rounded-md bg-green-500 py-2 font-medium uppercase text-white shadow hover:bg-rose-500'>
+				<BsCartPlus className='mr-2 h-5 w-5' />
+				Add to Cart
+			</button>
+		</div>
 	);
 };
 

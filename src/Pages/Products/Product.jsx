@@ -2,6 +2,8 @@ import React, { createRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { BsCart2, BsFileMinus, BsFilePlus } from "react-icons/bs";
+// import ReactImageGallery from "react-image-gallery";
+
 import { selectProdById } from "../../Redux/slices/productsSlice/productsSlice";
 
 const Product = () => {
@@ -62,7 +64,7 @@ const Product = () => {
 				<div className='max-w-lg min-w-sm  mt-4'>
 					<div className='shadow-sm shadow-gray-200 rounded'>
 						<h2 className='mb-4 px-4 uppercase tracking-wide text-green-600 bg-green-50 py-2 rounded-t-md font-semibold '>
-							{product?.category}
+							{product?.brand}
 						</h2>
 						<p className='text-black px-5 font-bold text-2xl tracking-wider font-sans capitalize'>
 							{product?.title}

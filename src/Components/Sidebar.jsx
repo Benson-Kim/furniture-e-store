@@ -8,7 +8,7 @@ const Sidebar = () => {
 	return (
 		<aside
 			aria-label='alternative nav'
-			className='fixed bg-gray-50 min-h-20 shadow-md w-full z-10 bottom-0 md:fixed md:left-0 md:top-32 md:min-h-screen md:w-48'
+			className='fixed bg-gray-50 min-h-20 shadow-md w-full z-10 bottom-0 md:relative md:min-h-screen md:w-48'
 		>
 			<ul className='list-reset flex flex-row flex-wrap px-1 pt-3 text-center md:flex-col md:py-3 md:px-2 md:text-left'>
 				<li className='hidden md:inline-flex px-5 border-b pt-6'>
