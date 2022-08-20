@@ -3,9 +3,9 @@ import Slider from "react-slick";
 
 const SliderCard = ({ image, heading, button, description, offer }) => {
 	return (
-		<div className=' bg-green-200 rounded mt-4 relative overflow-hidden'>
+		<div className=' bg-cyan-600 rounded mt-4 relative overflow-hidden'>
 			<div className='absolute top-0 right-0 py-6 pr-10 w-2/5'>
-				<h1 className='text-lime-800 font-sans text-sm md:text-xl uppercase'>
+				<h1 className='text-teal-800 font-sans text-sm md:text-xl uppercase'>
 					{heading}
 				</h1>
 				<p className='text-sm md:text-3xl font-serif text-black capitalize my-2 md:mb-5'>

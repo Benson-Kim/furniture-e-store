@@ -8,7 +8,7 @@ const Card = ({ icon, heading, description }) => {
 	return (
 		<div className='shadow-sm bg-gray-100 md:shadow-md shadow-gray-400 rounded md:hover:scale-1 hover:shadow hover:shadow-orange-400'>
 			<div className='flex flex-row items-center p-2 md:px-4 md:py-3'>
-				<i className='flex-shrink text-3xl sm:text-5xl lg:text-3xl 2xl:text-5xl text-green-500  mr-4'>
+				<i className='flex-shrink text-3xl sm:text-5xl lg:text-3xl 2xl:text-5xl text-teal-500  mr-4'>
 					{icon}
 				</i>
 				<div className='flex-1 '>

@@ -39,7 +39,7 @@ export const productsByCategory = createAsyncThunk(
 	async () => {
 		let category;
 		const res = await axios.get(
-			`https://fakestoreapi.com/products/category/${category}`,
+			`https://dummyjson.com/products/category/${category}`,
 		);
 		return res.data.products;
 	},
@@ -47,7 +47,7 @@ export const productsByCategory = createAsyncThunk(
 
 export default productsSlice.reducer;
 
-export const selectAllProducts = (state) => state.products.products;
+export const selectAllProducts = (state, product) => state.products.products;
 
 export const selectCategoryProducts = (state, category) =>
 	state.products.products.find((product) => product.category === category);

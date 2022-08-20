@@ -13,7 +13,6 @@ const ProductsList = () => {
 	const dispatch = useDispatch();
 	const products = useSelector(selectAllProducts);
 	const status = useSelector((state) => state.products.status);
-	const error = useSelector((state) => state.products.error);
 
 	useEffect(() => {
 		if (status === "idle") {

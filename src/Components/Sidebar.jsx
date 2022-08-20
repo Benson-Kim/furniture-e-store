@@ -1,10 +1,22 @@
-import React from "react";
-import { BiCabinet, BiChair } from "react-icons/bi";
-import { GiSofa } from "react-icons/gi";
-import { IoBedSharp } from "react-icons/io5";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+	fetchCategories,
+	selectAllCategories,
+} from "../Redux/slices/productsSlice/catSlice";
 
 const Sidebar = () => {
+	const dispatch = useDispatch();
+	const categories = useSelector(selectAllCategories);
+	const status = useSelector((state) => state.categories.status);
+
+	useEffect(() => {
+		if (status === "idle") {
+			dispatch(fetchCategories());
+		}
+	}, [status, dispatch]);
+
 	return (
 		<aside
 			aria-label='alternative nav'
@@ -18,58 +30,18 @@ const Sidebar = () => {
 						</div>
 					</div>
 				</li>
-				<li>
-					<Link
-						to='/'
-						className='relative flex flex-row items-center h-11 pr-6 text-zinc-600 font-light border-l-4 border-transparent hover:font-normal hover:text-white hover:bg-green-500 hover:border-green-900 focus:outline-none'
-					>
-						<span className='inline-flex justify-center items-center ml-4'>
-							<IoBedSharp className='w-5 h-5' />
-						</span>
-						<span className='ml-2 text-sm tracking-wide truncate '>
-							Beds
-						</span>
-					</Link>
-				</li>
-				<li>
-					<Link
-						to='/'
-						className='relative flex flex-row items-center h-11 pr-6 text-zinc-600 font-light border-l-4 border-transparent hover:font-normal hover:text-white hover:bg-green-500 hover:border-green-900 focus:outline-none'
-					>
-						<span className='inline-flex justify-center items-center ml-4'>
-							<BiCabinet className='w-5 h-5' />
-						</span>
-						<span className='ml-2 text-sm tracking-wide truncate'>
-							Cabinets
-						</span>
-					</Link>
-				</li>
-				<li>
-					<Link
-						to='/'
-						className='relative flex flex-row items-center h-11 pr-6 text-zinc-600 font-light border-l-4 border-transparent hover:font-normal hover:text-white hover:bg-green-500 hover:border-green-900 focus:outline-none'
-					>
-						<span className='inline-flex justify-center items-center ml-4'>
-							<BiChair className='w-5 h-5' />
-						</span>
-						<span className='ml-2 text-sm tracking-wide truncate'>
-							Chairs
-						</span>
-					</Link>
-				</li>
-				<li>
-					<Link
-						to='/'
-						className='relative flex flex-row items-center h-11 pr-6 text-zinc-600 font-light border-l-4 border-transparent hover:font-normal hover:text-white hover:bg-green-500 hover:border-green-900 focus:outline-none'
-					>
-						<span className='inline-flex justify-center items-center ml-4'>
-							<GiSofa className='w-5 h-5' />
-						</span>
-						<span className='ml-2 text-sm tracking-wide truncate'>
-							Sofas
-						</span>
-					</Link>
-				</li>
+				{categories.map((category, index) => (
+					<li key={index}>
+						<Link
+							to={`/${category}`}
+							className='relative capitalize flex flex-row items-center h-11 pr-6 text-zinc-600 font-light border-l-4 border-transparent hover:font-normal hover:text-white hover:bg-cyan-600 hover:border-cyan-900 focus:outline-none'
+						>
+							<span className='ml-2 text-sm tracking-wide truncate '>
+								{category}
+							</span>
+						</Link>
+					</li>
+				))}
 			</ul>
 		</aside>
 	);

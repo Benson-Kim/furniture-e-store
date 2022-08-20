@@ -30,21 +30,21 @@ const Header = () => {
 		<header>
 			<nav
 				aria-label='menu nav'
-				className='fixed top-0 z-20 mt-0 h-auto w-full shadow shadow-gray-100 bg-green-50 px-1 md:pt-1'
+				className='fixed top-0 z-20 mt-0 h-auto w-full shadow shadow-gray-100 bg-teal-50 px-1 md:pt-1'
 			>
 				<div className='py-3 min-w-full px-3  mb-3 font-light items-center text-white flex flex-wrap md:flex-nowrap justify-between'>
 					<div className=''>
 						<Link to='/'>
-							<GiWhaleTail className='text-3xl text-green-600' />
+							<GiWhaleTail className='text-3xl text-teal-600' />
 						</Link>
 					</div>
-					<span className='w-1/2 hidden md:flex items-center justify-between rounded-lg border-2 border-green-500'>
+					<span className='w-1/2 hidden md:flex items-center justify-between rounded-lg border-2 border-teal-500'>
 						<input
 							aria-label='search'
 							type='search'
 							id='search'
 							placeholder='Search here...'
-							className='appearance-none w-2/3  rounded-l border-r-2 border-green-600 py-1.5 px-2 leading-normal text-gray-600 transition focus:border-gray-400 focus:outline-none'
+							className='appearance-none w-2/3  rounded-l border-r-2 border-teal-600 py-1.5 px-2 leading-normal text-gray-600 transition focus:border-gray-400 focus:outline-none'
 						/>
 						<select
 							name='categories'
@@ -64,7 +64,7 @@ const Header = () => {
 							<li className='md:mr-3 md:flex-none'>
 								<Link
 									className='text-2xl inline-block py-2 px-2 text-gray-600 no-underline hover:text-orange-500'
-									to='/'
+									to='/cart'
 								>
 									<BsBag />
 								</Link>
@@ -89,18 +89,18 @@ const Header = () => {
 									</button>
 									<div
 										id='myDropdown'
-										className='dropdownlist invisible absolute right-0 z-30 mt-4 overflow-auto bg-green-500 px-3 py-2  text-white'
+										className='dropdownlist invisible absolute right-0 z-30 mt-4 overflow-auto bg-teal-500 px-3 py-2  text-white'
 									>
 										<Link
 											to='/'
-											className='flex items-center py-1.5 px-1 text-sm text-white no-underline hover:bg-green-100 hover:text-green-800'
+											className='flex items-center py-1.5 px-1 text-sm text-white no-underline hover:bg-teal-100 hover:text-teal-800'
 										>
 											<MdPersonOutline className='mr-2 h-5 w-5' />
 											<p>Profile</p>
 										</Link>
 										<Link
 											to='/'
-											className='flex items-center py-1.5 px-1 text-sm text-white no-underline hover:bg-green-100 hover:text-green-800'
+											className='flex items-center py-1.5 px-1 text-sm text-white no-underline hover:bg-teal-100 hover:text-teal-800'
 										>
 											<MdOutlineSettings className='mr-2 h-5 w-5' />
 
@@ -108,7 +108,7 @@ const Header = () => {
 										</Link>
 										<Link
 											to='/'
-											className='flex items-center py-1.5 px-1 text-sm text-white no-underline hover:bg-green-100 hover:text-green-800'
+											className='flex items-center py-1.5 px-1 text-sm text-white no-underline hover:bg-teal-100 hover:text-teal-800'
 										>
 											<MdLogout className='mr-2 h-5 w-5' />
 											<p>Log Out</p>

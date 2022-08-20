@@ -6,11 +6,16 @@ import Sidebar from "./Components/Sidebar";
 import Footer from "./Components/Footer";
 import Product from "./Pages/Products/Product";
 import ProductsList from "./Pages/Products/ProductsList";
+import CategoryProducts from "./Pages/Products/CategoryProducts";
+import Cart from "./Pages/Cart/Cart";
 
 const App = () => {
 	return (
 		<div className='font-sans leading-normal tracking-normal'>
 			<Header />
+			<Routes>
+				<Route path='/cart' element={<Cart />} />
+			</Routes>
 			<div className='flex flex-col md:flex-row md:relative md:mt-20'>
 				<Sidebar />
 				<main
@@ -20,6 +25,10 @@ const App = () => {
 					<div className=''>
 						<Routes>
 							<Route path='/' element={<ProductsList />} />
+							<Route
+								path='/:categoryname'
+								element={<CategoryProducts />}
+							/>
 							<Route
 								path='/product/:productid'
 								element={<Product />}

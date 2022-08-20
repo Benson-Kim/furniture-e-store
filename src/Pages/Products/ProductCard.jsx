@@ -15,10 +15,10 @@ const ProductCard = ({ product }) => {
 			{isHovered && (
 				<div className=' md:absolute right-2 top-2'>
 					<div className='flex gap-x-3'>
-						<button className='bg-orange-500 hidden md:inline-block p-1 rounded-l-lg rounded-t-lg text-white font-light hover:bg-orange-700'>
+						<button className='text-gray-600 p-1 rounded-l-lg rounded-t-lg font-light bg-gray-100 hover:text-gray-700 hidden md:inline-block'>
 							<BsEye className='h-5 w-5' />
 						</button>
-						<button className='bg-rose-500 p-1 rounded-r-lg rounded-t-lg text-white font-light hover:bg-rose-700'>
+						<button className='text-gray-600 p-1 rounded-r-lg rounded-t-lg font-light bg-gray-100 hover:text-gray-700'>
 							<BsHeart className='h-5 w-5' />
 						</button>
 					</div>
@@ -26,10 +26,10 @@ const ProductCard = ({ product }) => {
 			)}
 			<Link to={`/product/${product.id}`} className=''>
 				<div className='mb-2 flex items-center justify-between'>
-					<span className='rounded-tr-lg rounded-bl-lg bg-green-500 px-1.5 text-center text-sm capitalize text-white'>
+					<span className='rounded-tr-lg rounded-bl-lg bg-gray-50 px-1.5 text-center text-sm capitalize text-gray-600'>
 						{product?.brand}
 					</span>
-					<button className='bg-rose-500 p-1 rounded-r-lg rounded-t-lg font-light hover:bg-rose-700  text-white'>
+					<button className='text-gray-600 p-1 rounded-r-lg rounded-t-lg font-light hover:bg-gray-700  md:hidden'>
 						<BsHeart className='h-5 w-5' />
 					</button>
 				</div>
@@ -50,14 +50,14 @@ const ProductCard = ({ product }) => {
 						<article className='flex items-center justify-between'>
 							<div className='flex items-center'>
 								<p className='text-lg font-semibold'>
-									Ksh. {product?.price}
+									${product?.price}
 								</p>
-								<span className='ml-2 hidden rounded-r-lg rounded-t-lg bg-rose-500 px-1.5 text-center text-sm capitalize text-white sm:inline-flex'>
+								<span className='ml-2 hidden rounded-r-lg rounded-t-lg bg-gray-100 px-1.5 text-center text-sm capitalize text-gray-700 sm:inline-flex'>
 									-{product?.discountPercentage}%
 								</span>
 							</div>
 							<span className='text-right text-gray-500 line-through'>
-								Ksh{" "}
+								$
 								{Math.ceil(
 									product?.price +
 										(product?.price *
@@ -69,7 +69,7 @@ const ProductCard = ({ product }) => {
 					</div>
 				</div>
 			</Link>
-			<button className='flex w-full items-center justify-center rounded-md bg-green-500 py-2 font-medium uppercase text-white shadow hover:bg-rose-500'>
+			<button className='flex w-full items-center justify-center rounded-md bg-cyan-600 py-2 font-medium uppercase text-white shadow hover:bg-cyan-700'>
 				<BsCartPlus className='mr-2 h-5 w-5' />
 				Add to Cart
 			</button>
