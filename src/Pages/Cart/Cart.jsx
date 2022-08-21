@@ -1,9 +1,11 @@
 import React from "react";
 import { BsArrowLeft } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartProduct from "./CartProduct";
 
 const Cart = () => {
+	const { cart } = useSelector((state) => state.cart);
 	return (
 		<div className='container mx-auto '>
 			<div className='md:flex shadow-md my-2'>
@@ -13,10 +15,9 @@ const Cart = () => {
 							Shopping Cart
 						</h1>
 						<h2 className='font-semibold text-2xl'>
-							3
-							{/* {cart
+							{cart
 								.map((item) => (item.quantity > 0 ? 1 : 0))
-								.reduce((acc, item) => acc + item, 0)}{" "} */}
+								.reduce((acc, item) => acc + item, 0)}{" "}
 							Items
 						</h2>
 					</div>
@@ -34,14 +35,13 @@ const Cart = () => {
 							Total
 						</h3>
 					</div>
-					<CartProduct />
-					{/* {cart.map((item) => (
+					{cart.map((item) => (
 						<CartProduct
-							// product={item}
-							// key={item.productID}
+							product={item}
+							key={item.productID}
 							// send={send}
 						/>
-					// ))} */}
+					))}
 					<Link
 						to='/'
 						className='flex w-60 gap-x-3 font-semibold items-center text-indigo-600 text mt-10'
@@ -60,10 +60,9 @@ const Cart = () => {
 							Total Number of Items
 						</span>
 						<span className='font-semibold text-sm'>
-							4
-							{/* {cart
+							{cart
 								.map((item) => item.quantity)
-								.reduce((acc, item) => acc + item, 0)} */}
+								.reduce((acc, item) => acc + item, 0)}
 						</span>
 					</div>
 
@@ -71,7 +70,11 @@ const Cart = () => {
 						<div className='flex font-semibold justify-between py-6 text-sm uppercase'>
 							<span>Total cost</span>
 							<span>
-								3500
+								{cart?.reduce(
+									(acc, item) =>
+										acc + item.price * item.quantity,
+									0,
+								)}
 								{/* <CurrencyFormat
 									value={cart?.reduce(
 										(acc, item) =>

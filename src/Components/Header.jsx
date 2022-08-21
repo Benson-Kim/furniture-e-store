@@ -2,6 +2,7 @@ import React from "react";
 import { BsArrowDown, BsBag, BsHeart, BsPersonCircle } from "react-icons/bs";
 import { GiWhaleTail } from "react-icons/gi";
 import { MdLogout, MdOutlineSettings, MdPersonOutline } from "react-icons/md";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 /*Toggle dropdown list*/
@@ -26,6 +27,8 @@ window.onclick = function (event) {
 };
 
 const Header = () => {
+	const { cart, wishlist } = useSelector((state) => state.cart);
+	console.log(cart.length);
 	return (
 		<header>
 			<nav
@@ -63,25 +66,40 @@ const Header = () => {
 						<ul className='list-reset flex flex-1 justify-between items-center md:flex-none'>
 							<li className='md:mr-3 md:flex-none'>
 								<Link
-									className='text-2xl inline-block py-2 px-2 text-gray-600 no-underline hover:text-orange-500'
 									to='/cart'
+									className='inline-flex relative w-fit cursor-pointer '
 								>
-									<BsBag />
+									<div className='absolute inline-block top-0 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 px-1.5 py-1 text-sm leading-none text-center whitespace-nowrap align-baseline font-light bg-teal-700 text-zinc-100 rounded-full z-10 '>
+										{cart?.length}
+									</div>
+									<div className='text-gray-700 hover:text-teal-100 hover:bg-teal-600 p-1.5 flex items-center justify-center text-center rounded-lg shadow-md'>
+										<div>
+											<BsBag className='h-5 w-5' />
+										</div>
+									</div>
 								</Link>
 							</li>
 							<li className='md:mr-3 md:flex-none'>
 								<Link
-									className='text-2xl inline-block py-2 px-2 text-gray-600 no-underline hover:text-orange-500'
-									to='/'
+									to='/wishlist'
+									className='inline-flex relative w-fit cursor-pointer '
 								>
-									<BsHeart />
+									<div className='absolute inline-block top-0 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 px-1.5 py-1 text-sm leading-none text-center whitespace-nowrap align-baseline font-light bg-teal-700 text-zinc-100 rounded-full z-10 '>
+										{wishlist?.length}
+									</div>
+									<div className='text-gray-700 hover:text-teal-100 hover:bg-teal-600 p-1.5 flex items-center justify-center text-center rounded-lg shadow-md'>
+										<div>
+											<BsHeart className='h-5 w-5' />
+										</div>
+									</div>
 								</Link>
 							</li>
+
 							<li className='flex-1 mb-2 md:mr-3 md:flex-none'>
 								<div className='relative inline-block'>
 									<button
 										onClick={() => toggleDD("myDropdown")}
-										className='drop-button py-2 px-2 flex items-center text-gray-600 no-underline hover:text-orange-500'
+										className='drop-button py-2 px-2 flex items-center text-gray-600 no-underline hover:text-teal-500'
 									>
 										<BsPersonCircle className='text-2xl mr-1' />
 										Account

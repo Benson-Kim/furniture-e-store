@@ -1,17 +1,55 @@
 import React, { createRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { BsCart2, BsFileMinus, BsFilePlus } from "react-icons/bs";
 // import ReactImageGallery from "react-image-gallery";
 
 import { selectProdById } from "../../Redux/slices/productsSlice/productsSlice";
+import {
+	addItemQuantity,
+	addToCart,
+	addToWishlist,
+	minusItemQuantity,
+	removeFromCart,
+	removeFromWishlist,
+} from "../../Redux/slices/cartSlice";
 
 const Product = () => {
 	const { productid } = useParams();
+	const dispatch = useDispatch();
 
 	const product = useSelector((state) =>
 		selectProdById(state, Number(productid)),
 	);
+
+	const { cart, wishlist } = useSelector((state) => state.cart);
+
+	const cartItem = cart.find((item) => item.id === product.id);
+	const wishItem = wishlist.find((item) => item.id === product.id);
+
+	const handleWishlist = () => {
+		if (wishItem) {
+			dispatch(removeFromWishlist(product.id));
+		} else {
+			dispatch(addToWishlist(product));
+		}
+	};
+
+	const addItems = () => {
+		if (cartItem) {
+			dispatch(addItemQuantity(product.id));
+		} else {
+			dispatch(addToCart(product));
+		}
+	};
+
+	const removeItems = () => {
+		if (cartItem?.quantity > 1) {
+			dispatch(minusItemQuantity(product.id));
+		} else {
+			dispatch(removeFromCart(product.id));
+		}
+	};
 
 	const [index, setIndex] = useState(0);
 	const myRef = createRef();
@@ -63,7 +101,7 @@ const Product = () => {
 				</div>
 				<div className='max-w-lg min-w-sm  mt-4'>
 					<div className='shadow-sm shadow-gray-200 rounded'>
-						<h2 className='mb-4 px-4 uppercase tracking-wide text-green-600 bg-green-50 py-2 rounded-t-md font-semibold '>
+						<h2 className='mb-4 px-4 uppercase tracking-wide text-teal-600 bg-teal-50 py-2 rounded-t-md font-semibold '>
 							{product?.brand}
 						</h2>
 						<p className='text-black px-5 font-bold text-2xl tracking-wider font-sans capitalize'>
@@ -80,7 +118,7 @@ const Product = () => {
 							<h1 className='font-bold text-2xl mr-3'>
 								${product.price}.00
 							</h1>
-							<h2 className='bg-green-100 text-green-700 font-semibold  px-2 rounded'>
+							<h2 className='bg-teal-100 text-teal-700 font-semibold  px-2 rounded'>
 								{product?.discountPercentage}%
 							</h2>
 						</span>
@@ -95,19 +133,31 @@ const Product = () => {
 					{/* quantity and cart */}
 					<div className='mt-8 flex flex-col w-full space-y-4 md:flex-row justify-between items-center md:space-x-4'>
 						{/* qty */}
-						<div className='bg-gray-100 text-center w-full flex items-center justify-between px-4 py-1.5 rounded-md'>
-							<BsFileMinus className='text-green-500 text-3xl cursor-pointer hover:scale-x-105 hover:text-green-600 ' />
-							<input
-								type='text'
-								value='0'
-								className='font-bold text-2xl text-gray-800 w-10 bg-inherit focus:outline-none'
-							/>
-							<BsFilePlus className='text-green-500 text-3xl cursor-pointer hover:scale-x-105 hover:text-green-600 ' />
-						</div>
-						<button className='w-full text-xl flex items-center justify-center gap-x-2 bg-green-600 text-white font-semibold py-2 rounded-md hover:font-light hover:bg-green-700'>
-							<BsCart2 className='text-2xl mb-1' />
-							Add to Cart
-						</button>
+						{cartItem?.id ? (
+							<div className='bg-gray-100 text-center w-full flex items-center justify-between px-4 py-1.5 rounded-md'>
+								<BsFileMinus
+									onClick={removeItems}
+									className='text-teal-600 text-3xl cursor-pointer hover:scale-x-105 hover:text-teal-700 '
+								/>
+								<input
+									type='text'
+									value={cartItem?.quantity}
+									className='font-bold text-2xl text-gray-800 w-10 bg-inherit focus:outline-none'
+								/>
+								<BsFilePlus
+									onClick={addItems}
+									className='text-teal-600 text-3xl cursor-pointer hover:scale-x-105 hover:text-teal-700 '
+								/>
+							</div>
+						) : (
+							<button
+								onClick={addItems}
+								className='w-full text-xl flex items-center justify-center gap-x-2 bg-teal-600 text-white py-2 rounded-md font-light hover:bg-teal-700'
+							>
+								<BsCart2 className='text-2xl mb-1' />
+								Add to Cart
+							</button>
+						)}
 					</div>
 				</div>
 			</article>

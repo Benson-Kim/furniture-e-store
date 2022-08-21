@@ -8,6 +8,7 @@ import Product from "./Pages/Products/Product";
 import ProductsList from "./Pages/Products/ProductsList";
 import CategoryProducts from "./Pages/Products/CategoryProducts";
 import Cart from "./Pages/Cart/Cart";
+import Wishlist from "./Pages/Cart/Wishlist";
 
 const App = () => {
 	return (
@@ -15,6 +16,7 @@ const App = () => {
 			<Header />
 			<Routes>
 				<Route path='/cart' element={<Cart />} />
+				<Route path='/wishlist' element={<Wishlist />} />
 			</Routes>
 			<div className='flex flex-col md:flex-row md:relative md:mt-20'>
 				<Sidebar />
